@@ -25,6 +25,29 @@ clean_up(){
 	exit 0
 }
 
+start_dhcp(){
+	echo "[*] Menjalankan DHCP server..."
+	systemctl restart isc-dhcp-server
+
+	local sukses=0
+
+	for i in {1..10}; do
+		if systemctl is-active --quiet isc-dhcp-server; then
+			sukses=1
+			break
+		fi
+		sleep 1
+	done
+
+	if [[ "${sukses}" -eq 1 ]]; then
+		echo "[+] DHCP server berhasil dijalankan!"
+	else
+		echo "[-] Gagal menjalankan DHCP server!"
+		echo "[*] Ketik 'journalctl -u isc-dhcp-server -n 50' untuk melihat log."
+		exit 1
+	fi
+}
+
 restart_dhcp(){
 	echo "[*] Merestart DHCP server..."
 	systemctl restart isc-dhcp-server
@@ -42,7 +65,7 @@ restart_dhcp(){
 	if [[ "${sukses}" -eq 1 ]]; then
 		echo "[+] DHCP server berhasil direstart!"
 	else
-		echo "[-] Gagal menjalankan DHCP server!"
+		echo "[-] Gagal merestart DHCP server!"
 		echo "[*] Ketik 'journalctl -u isc-dhcp-server -n 50' untuk melihat log."
 		exit 1
 	fi
@@ -158,7 +181,7 @@ subnet 10.10.10.0 netmask 255.255.255.0 {
 }
 EOF
 
-restart_dhcp
+start_dhcp
 
 if [[ "${log}" -eq 1 ]]; then
 	echo "[*] Menampilkan log DHCP server secara real-time..."
