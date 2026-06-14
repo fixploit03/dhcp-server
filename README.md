@@ -2,15 +2,18 @@
 
 ## Instalasi
 
-```
+```bash
 sudo apt update
-sudo apt install -y isc-dhcp-server
+sudo apt install -y isc-dhcp-server git
+git clone https://github.com/fixploit03/dhcp-server.git
+cd dhcp-server
+chmod +x dhcp-server.sh
 ```
 
 ## Penggunaan
 
-```
-sudo bash dhcp-server.sh -i <interface> [opsi]
+```bash
+sudo ./dhcp-server.sh -i <interface> [opsi]
 ```
 
 Daftar opsi yang tersedia:
