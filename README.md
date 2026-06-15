@@ -25,3 +25,6 @@ Daftar opsi yang tersedia:
 ## Catatan
 
 IP masih di-hardcode, untuk IP defaultnya adalah `10.10.10.1/24`. IP tersebut bisa diganti sesuai kebutuhan dengan mengedit variabel `ip` di dalam script `dhcp-server.sh`.
+
+## Lisensi
+Project ini dilisensikan di bawah lisensi [MIT](LICENSE).
