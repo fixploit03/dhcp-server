@@ -122,15 +122,6 @@ while getopts ":hi:lr" opsi; do
 	esac
 done
 
-if [[ -z "${interface}" ]]; then
-	usage
-fi
-
-if [[ ! -d "/sys/class/net/${interface}" ]]; then
-	echo "[-] Interface ${interface} tidak ditemukan!"
-	exit 1
-fi
-
 if [[ "${reset}" -eq 1 ]]; then
 	echo "[*] Menghentikan DHCP server sementara..."
 	systemctl stop isc-dhcp-server
@@ -145,6 +136,15 @@ if [[ "${reset}" -eq 1 ]]; then
 
 	restart_dhcp
 	exit 0
+fi
+
+if [[ -z "${interface}" ]]; then
+	usage
+fi
+
+if [[ ! -d "/sys/class/net/${interface}" ]]; then
+	echo "[-] Interface ${interface} tidak ditemukan!"
+	exit 1
 fi
 
 echo "[*] Menambahkan IP ${ip} ke interface ${interface}..."
