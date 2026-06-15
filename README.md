@@ -29,19 +29,19 @@ Daftar opsi yang tersedia:
 Menjalankan DHCP server tanpa log:
 
 ```bash
-sudo ./dhcp-server -i <interface>
+sudo ./dhcp-server.sh -i <interface>
 ```
 
 Menjalankan DHCP server dengan log:
 
 ```bash
-sudo ./dhcp-server -i <interface> -l
+sudo ./dhcp-server.sh -i <interface> -l
 ```
 
 Mereset pool DHCP server:
 
 ```bash
-sudo ./dhcp-server -r
+sudo ./dhcp-server.sh -r
 ```
 
 ## Catatan
