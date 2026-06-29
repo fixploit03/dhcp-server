@@ -1,6 +1,6 @@
 # DHCP Server
 
-Script Bash sederhana untuk setup DHCP Server secara otomatis.
+Script Bash untuk setup DHCP Server secara otomatis.
 
 ## Instalasi
 
